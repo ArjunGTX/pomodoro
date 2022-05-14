@@ -4,7 +4,7 @@ import { paths } from "../util/constant";
 export const LandingPage = () => {
   return (
     <div className="full-page bg-secondary fc-fs-fs txt-dark landing-page of-hidden">
-      <div className="full-width full-height pos fc-fs-ct mt-xl p-xl">
+      <div className="full-width full-height fc-fs-ct mt-xl p-xl">
         <Logo className="mb-xl" />
         <h3 className="my-xl txt-lg txt-center font-medium">
           Organize your{" "}

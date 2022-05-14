@@ -131,7 +131,7 @@ export const Login = () => {
               >
                 <button
                   type="button"
-                  className="txt-light fr-ct-ct"
+                  className="txt-medium fr-ct-ct"
                   onClick={togglePasswordVisibility}
                 >
                   {showPassword ? (
