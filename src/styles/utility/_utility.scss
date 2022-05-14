@@ -1,0 +1,231 @@
+@each $property, $map in $utility-map {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $key, $value in $values {
+    @if $prefix == "p" or $prefix == "m" {
+      .#{$prefix}-#{$key} {
+        #{$property}: $value;
+      }
+      .#{$prefix}x-#{$key} {
+        #{$property}-left: $value;
+        #{$property}-right: $value;
+      }
+      .#{$prefix}y-#{$key} {
+        #{$property}-top: $value;
+        #{$property}-bottom: $value;
+      }
+    } @else {
+      .#{$prefix}-#{$key} {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+@each $color, $value in $background-colors {
+  .bd-#{$color} {
+    border: 2px solid $value;
+  }
+  .hover-#{$color}:hover {
+    @if lightness($value) > 50% {
+      background-color: darken($value, 10%);
+      transition: background-color 300ms;
+    } @else {
+      background-color: lighten($value, 10%);
+      transition: background-color 300ms;
+    }
+  }
+  .hover-#{$color}-outlined:hover {
+    background-color: $value;
+    color: map-get($background-colors, "secondary");
+    transition: background-color 300ms;
+  }
+  .hover-icon-#{$color}:hover {
+    color: $value;
+    transition: color 300ms;
+  }
+}
+.bd-none {
+  border: 2px solid transparent;
+}
+
+@each $dir, $dir-value in $flex-directions {
+  @each $justify, $justify-value in $flex-justify {
+    @each $align, $align-value in $flex-align {
+      .#{$dir}-#{$justify}-#{$align} {
+        @include flex($dir-value, $justify-value, $align-value);
+      }
+    }
+  }
+}
+.f-wrap {
+  flex-wrap: wrap;
+}
+
+@each $size, $value in $avatar-sizes {
+  .avatar-#{$size} {
+    width: $value;
+    height: $value;
+  }
+}
+
+@each $cursor in $cursors {
+  .cursor-#{$cursor} {
+    cursor: $cursor;
+  }
+}
+.full-page {
+  width: 100vw;
+  height: 100vh;
+}
+.full-width {
+  width: 100%;
+}
+.half-width {
+  width: 50%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-70 {
+  width: 70%;
+}
+.full-height {
+  height: 100%;
+}
+.half-height {
+  height: 50%;
+}
+.width-max-content {
+  width: max-content;
+}
+.img-res {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+.bg-res {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.of-hidden {
+  overflow: hidden;
+}
+.ofx-hidden {
+  overflow-x: hidden;
+}
+.ofy-hidden {
+  overflow-y: hidden;
+}
+.of-auto {
+  overflow: auto;
+}
+.ofy-auto {
+  overflow-y: auto;
+}
+.ofx-auto {
+  overflow-x: auto;
+}
+.txt-of-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.display-block {
+  display: block;
+}
+.display-inline {
+  display: inline;
+}
+
+.shadow-light {
+  box-shadow: $shadow-light;
+}
+.shadow-medium {
+  box-shadow: $shadow-medium;
+}
+.shadow-dark {
+  box-shadow: $shadow-dark;
+}
+
+.pos-abs {
+  position: absolute;
+}
+.pos-rel {
+  position: relative;
+}
+.pos-fix {
+  position: fixed;
+}
+.top-right {
+  top: 1rem;
+  right: 1rem;
+  left: auto;
+}
+.top-left {
+  top: 1rem;
+  left: 1rem;
+  right: auto;
+}
+.bottom-right {
+  top: 100%;
+  right: 1rem;
+  left: auto;
+}
+.bottom-left {
+  top: 100%;
+  left: 1rem;
+  right: auto;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+}
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+}
+
+.txt-underline {
+  text-decoration: underline;
+}
+.txt-center {
+  text-align: center;
+}
+.ul-primary {
+  border-bottom: 2px solid map-get($background-colors, "primary") !important;
+}
+.ul-light {
+  border-bottom: 2px solid $border-light;
+}
+.ul-medium {
+  border-bottom: 2px solid $border-medium;
+}
+.ul-none {
+  border-bottom: 2px solid transparent !important;
+}
+
+.z-100 {
+  z-index: 100;
+}
+.z-200 {
+  z-index: 200;
+}
+.z-300 {
+  z-index: 300;
+}
+.z-400 {
+  z-index: 400;
+}
+.br-round {
+  border-radius: 50%;
+}
+.txt-no-wrap {
+  white-space: nowrap;
+}
+.no-events {
+  pointer-events: none;
+}
