@@ -1,9 +1,7 @@
 import { Button, Logo } from "../components";
-import { useAuth } from "../context";
 import { paths } from "../util/constant";
 
 export const LandingPage = () => {
-  const { auth } = useAuth();
   return (
     <div className="full-page bg-secondary fc-fs-fs txt-dark landing-page of-hidden">
       <div className="full-width full-height pos fc-fs-ct mt-xl p-xl">

@@ -5,6 +5,7 @@ import App from "./App";
 import { AuthProvider } from "./context";
 import { makeServer } from "./server";
 import "./styles/index.scss";
+import { Toaster } from "react-hot-toast";
 
 makeServer();
 
@@ -14,6 +15,12 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <App />
+        <Toaster
+          position="bottom-left"
+          toastOptions={{
+            duration: 2000,
+          }}
+        />
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
