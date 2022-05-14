@@ -29,7 +29,7 @@ export const Button = ({
             ? `bd-${color} txt-${color} hover-${color}-outlined`
             : `bg-${color} hover-${color} txt-${color}`
           : variant === "plain" || variant === "icon"
-          ? "txt-light hover-medium"
+          ? "txt-dark hover-medium"
           : variant === "outlined"
           ? "bd-primary txt-primary hover-primary-outlined"
           : "bg-primary hover-primary txt-secondary bd-primary",
