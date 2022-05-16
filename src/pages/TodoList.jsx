@@ -1,13 +1,17 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { Button, TodoCard } from "../components";
+import { Button, TodoCard, TodoModal } from "../components";
 import { useAuth } from "../context";
 import { paths, toastSuccess } from "../util/constant";
+import { FaPlusCircle } from "react-icons/fa";
+import { useState } from "react";
 
 export const TodoList = () => {
   const navigate = useNavigate();
   const { setAuth } = useAuth();
+
+  const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
     setAuth(null);
@@ -31,15 +35,19 @@ export const TodoList = () => {
         </Button>
       </div>
       <div className="fc-fs-fs full-width full-height bg-secondary-light br-sm of-hidden shadow-light">
-        <h2 className="txt-light p-xl font-medium full-width bg-primary txt-xl">
-          Tasks
-        </h2>
+        <div className="p-xl full-width bg-primary fr-sb-bl txt-light">
+          <h2 className="font-medium txt-xl">Tasks</h2>
+          <button onClick={() => setShowModal(true)} className="mr-xl">
+            <FaPlusCircle className="txt-xl txt-light" />
+          </button>
+        </div>
         <div className="full-width full-height ofy-auto fc-fs-fs">
           {todo.map((todo) => (
             <TodoCard key={todo} />
           ))}
         </div>
       </div>
+      {showModal && <TodoModal onClose={() => setShowModal(false)} />}
     </div>
   );
 };

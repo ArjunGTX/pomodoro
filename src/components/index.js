@@ -4,3 +4,4 @@ export * from "./Logo";
 export * from "./PageWrapper";
 export * from "./TextInput";
 export * from "./TodoCard";
+export * from "./TodoModal";
