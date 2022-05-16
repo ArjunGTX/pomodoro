@@ -24,12 +24,12 @@ export const Button = ({
         "br-sm font-medium fr-ct-ct",
         color
           ? variant === "plain" || variant === "icon"
-            ? `txt-${color} hover-medium`
+            ? `txt-${color}`
             : variant === "outlined"
             ? `bd-${color} txt-${color} hover-${color}-outlined`
             : `bg-${color} hover-${color} txt-${color}`
           : variant === "plain" || variant === "icon"
-          ? "txt-light hover-medium"
+          ? "txt-dark"
           : variant === "outlined"
           ? "bd-primary txt-primary hover-primary-outlined"
           : "bg-primary hover-primary txt-secondary bd-primary",

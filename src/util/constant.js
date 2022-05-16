@@ -2,6 +2,7 @@ export const paths = {
   HOME: "/",
   LOGIN: "/login",
   SIGN_UP: "/sign-up",
+  TODO: "/todo",
 };
 
 export const guestUser = {
