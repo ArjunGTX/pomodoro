@@ -8,7 +8,7 @@ import { FaPlusCircle } from "react-icons/fa";
 
 export const TodoList = () => {
   const navigate = useNavigate();
-  const { setAuth } = useAuth();
+  const { auth,setAuth } = useAuth();
   const { todos, syncTodosWithServer } = useTodo();
 
   const [showModal, setShowModal] = useState(false);
@@ -27,9 +27,9 @@ export const TodoList = () => {
     <div className="full-width full-height fc-fs-fs p-xl">
       <div className="fr-sb-ct full-width px-xl pb-xl">
         <div className="fc-fs-fs">
-          <h1 className="txt-primary font-medium">Hello User</h1>
+          <h1 className="txt-primary font-medium">Hello {`${auth.firstName} ${auth.lastName}`}</h1>
           <p className="txt-medium">
-            You have 3 Tasks{" "}
+            You have {todos.filter(todo => !todo.isComplete).length} Tasks{" "}
             <span className="txt-primary font-medium">Todo</span>
           </p>
         </div>
