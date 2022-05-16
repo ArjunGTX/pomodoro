@@ -24,7 +24,7 @@ export const TextInput = ({
       className={clsx(
         "py-sm px-xl txt-xs br-sm full-width fr-fs-ct txt-dark",
         disabled && "txt-disabled",
-        isFocused ? "bd-primary" : "bd-light",
+        isFocused ? "bd-primary" : "bd-medium",
         className
       )}
     >

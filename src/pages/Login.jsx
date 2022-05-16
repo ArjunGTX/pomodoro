@@ -11,18 +11,12 @@ import * as api from "../api";
 import * as validate from "../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useAuth } from "../context";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 export const Login = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const redirectTo = state?.from
-    ? state.from === paths.SIGN_UP
-      ? paths.HOME
-      : state.from
-    : null;
 
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
@@ -59,13 +53,7 @@ export const Login = () => {
         userId: data.foundUser._id,
       });
       localStorage.setItem(constants.ACCESS_TOKEN, data.encodedToken);
-      if (redirectTo) {
-        navigate(redirectTo, {
-          replace: true,
-        });
-      } else {
-        navigate(paths.TODO);
-      }
+      navigate(paths.TODO);
       toast.success(toastSuccess.LOGIN);
     } catch (error) {
       toast.error(toastError.LOGIN);

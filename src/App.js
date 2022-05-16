@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { LandingPage, Login, PageNotFound, SignUp } from "./pages";
+import { PageWrapper } from "./components";
+import { LandingPage, Login, PageNotFound, SignUp, TodoList } from "./pages";
 import { paths } from "./util/constant";
 
 function App() {
@@ -8,6 +9,14 @@ function App() {
       <Route path={paths.HOME} element={<LandingPage />} />
       <Route path={paths.LOGIN} element={<Login />} />
       <Route path={paths.SIGN_UP} element={<SignUp />} />
+      <Route
+        path={paths.TODO}
+        element={
+          <PageWrapper requiresAuth>
+            <TodoList />
+          </PageWrapper>
+        }
+      />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
