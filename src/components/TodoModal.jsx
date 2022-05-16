@@ -1,13 +1,20 @@
 import clsx from "clsx";
-import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "./Button";
 import { TextInput } from "./TextInput";
 import * as api from "../api";
 import toast from "react-hot-toast";
 import { toastError, toastSuccess } from "../util/constant";
+import { useClickOutside } from "../hooks";
+import { useTodo } from "../context";
 
 export const TodoModal = ({ onClose, todo }) => {
+  const { syncTodosWithServer } = useTodo();
+
+  const modalRef = useRef(null);
+
+  useClickOutside(modalRef, onClose);
+
   const [todoInputs, setTodoInputs] = useState(
     todo
       ? todo
@@ -17,30 +24,31 @@ export const TodoModal = ({ onClose, todo }) => {
           time: "",
           break: "",
           isComplete: false,
+          labels: [],
         }
   );
 
   const createTodoRequest = async () => {
     try {
-      const { status } = await api.addTodo(todoInputs);
+      const { status, data } = await api.addTodo(todoInputs);
       if (status !== 201) return;
       toast.success(toastSuccess.ADD_TODO);
       onClose();
+      syncTodosWithServer();
     } catch (error) {
-      console.log(error);
       toast.error(toastError.ADD_TODO);
     }
   };
 
   const updateTodoRequest = async () => {
-    const { _id, todoData } = todoInputs;
+    const { _id, ...todoData } = todoInputs;
     try {
-      const { status } = await api.updateTodo(_id, todoData);
+      const { status, data } = await api.updateTodo(_id, todoData);
       if (status !== 200) return;
+      syncTodosWithServer();
       toast.success(toastSuccess.UPDATE_TODO);
       onClose();
     } catch (error) {
-      console.log(error);
       toast.error(toastError.UPDATE_TODO);
     }
   };
@@ -58,6 +66,7 @@ export const TodoModal = ({ onClose, todo }) => {
 
   return (
     <form
+      ref={modalRef}
       onSubmit={handleSubmit}
       className={clsx(
         "todo-modal fc-fs-fs p-xl shadow-light pos-fix z-400 br-sm bg-secondary-light"
@@ -103,7 +112,7 @@ export const TodoModal = ({ onClose, todo }) => {
         <Button type="button" onClick={onClose} variant="plain" color="primary">
           Cancel
         </Button>
-        <Button className="ml-sm">Add</Button>
+        <Button className="ml-sm">{todo ? "Update" : "Add"}</Button>
       </div>
     </form>
   );

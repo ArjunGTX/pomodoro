@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Button, TodoCard, TodoModal } from "../components";
-import { useAuth } from "../context";
+import { useAuth, useTodo } from "../context";
 import { paths, toastSuccess } from "../util/constant";
 import { FaPlusCircle } from "react-icons/fa";
-import { useState } from "react";
 
 export const TodoList = () => {
   const navigate = useNavigate();
   const { setAuth } = useAuth();
+  const { todos, syncTodosWithServer } = useTodo();
 
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    syncTodosWithServer();
+  }, []);
 
   const handleLogout = () => {
     setAuth(null);
@@ -19,7 +23,6 @@ export const TodoList = () => {
     toast.success(toastSuccess.LOG_OUT);
   };
 
-  const todo = ["todo1", "todo2"];
   return (
     <div className="full-width full-height fc-fs-fs p-xl">
       <div className="fr-sb-ct full-width px-xl pb-xl">
@@ -42,8 +45,8 @@ export const TodoList = () => {
           </button>
         </div>
         <div className="full-width full-height ofy-auto fc-fs-fs">
-          {todo.map((todo) => (
-            <TodoCard key={todo} />
+          {todos?.map((todo) => (
+            <TodoCard key={todo._id} todo={todo} />
           ))}
         </div>
       </div>

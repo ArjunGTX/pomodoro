@@ -16,13 +16,13 @@ export const axiosGet = async (url, requireAuth) => {
   return await axios.get(url);
 };
 
-export const axiosPost = async (url, requireAuth, data) => {
+export const axiosPost = async (url, requireAuth, habit) => {
   if (requireAuth) {
     const token = getAccessToken();
     if (!token) return Promise.reject(Error("Invalid AccessToken"));
-    return await axios.post(url, { data }, createConfig(token));
+    return await axios.post(url, { habit }, createConfig(token));
   }
-  return await axios.post(url, data);
+  return await axios.post(url, habit);
 };
 
 export const axiosDelete = async (url, requireAuth) => {
