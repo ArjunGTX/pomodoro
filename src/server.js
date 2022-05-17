@@ -42,12 +42,12 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
 
-      // habit routes (private)
-      this.get("habits", getHabitsHandler.bind(this));
-      this.get("habits/:habitId", getHabitHandler.bind(this));
-      this.post("habits", createHabitHandler.bind(this));
-      this.post("habits/:habitId", editHabitHandler.bind(this));
-      this.delete("habits/:habitId", deleteHabitHandler.bind(this));
+      // todo routes (private)
+      this.get("todo", getHabitsHandler.bind(this));
+      this.get("todo/:todoId", getHabitHandler.bind(this));
+      this.post("todo", createHabitHandler.bind(this));
+      this.post("todo/:todoId", editHabitHandler.bind(this));
+      this.delete("todo/:todoId", deleteHabitHandler.bind(this));
     },
   });
   return server;

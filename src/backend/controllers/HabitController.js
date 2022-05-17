@@ -42,7 +42,7 @@ export const getHabitHandler = function (schema, request) {
       }
     );
   }
-  const habitId = request.params.habitId;
+  const habitId = request.params.todoId;
   const habit = user.habits.find((habit) => habit._id === habitId);
   return new Response(200, {}, { habit });
 };
@@ -72,7 +72,7 @@ export const createHabitHandler = function (schema, request) {
   };
   user.habits.push(createdHabit);
   this.db.users.update({ _id: user._id }, user);
-  return new Response(200, {}, { habits: user.habits });
+  return new Response(201, {}, { habits: user.habits });
 };
 
 /**
@@ -93,7 +93,7 @@ export const editHabitHandler = function (schema, request) {
     );
   }
   const { habit } = JSON.parse(request.requestBody);
-  const habitId = request.params.habitId;
+  const habitId = request.params.todoId;
   const habitIndex = user.habits.findIndex((habit) => habit._id === habitId);
   user.habits[habitIndex] = { ...user.habits[habitIndex], ...habit };
   this.db.users.update({ _id: user._id }, user);
@@ -116,7 +116,7 @@ export const deleteHabitHandler = function (schema, request) {
       }
     );
   }
-  const habitId = request.params.habitId;
+  const habitId = request.params.todoId;
   user.habits = user.habits.filter((habit) => habit._id !== habitId);
   this.db.users.update({ _id: user._id }, user);
   return new Response(200, {}, { habits: user.habits });

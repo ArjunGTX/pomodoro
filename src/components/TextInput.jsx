@@ -15,6 +15,7 @@ export const TextInput = ({
   max,
   onChange,
   onClick,
+  required
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -24,7 +25,7 @@ export const TextInput = ({
       className={clsx(
         "py-sm px-xl txt-xs br-sm full-width fr-fs-ct txt-dark",
         disabled && "txt-disabled",
-        isFocused ? "bd-primary" : "bd-light",
+        isFocused ? "bd-primary" : "bd-medium",
         className
       )}
     >
@@ -42,6 +43,7 @@ export const TextInput = ({
         autoComplete={autoComplete}
         id={id}
         className="full-width"
+        required={required}
       />
       {children}
     </div>

@@ -4,14 +4,13 @@ import { constants, paths, toastError, toastSuccess } from "../util/constant";
 import * as api from "../api";
 import * as validate from "../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useAuth, useLoader } from "../context";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export const SignUp = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
@@ -56,7 +55,7 @@ export const SignUp = () => {
         userId: data.createdUser._id,
       });
       localStorage.setItem(constants.ACCESS_TOKEN, data.encodedToken);
-      navigate(paths.HOME);
+      navigate(paths.TODO);
       toast.success(toastSuccess.SIGN_UP);
     } catch (error) {
       toast.error(toastError.SIGN_UP);
@@ -192,9 +191,6 @@ export const SignUp = () => {
             <Button className="my-sm full-width mx-auto">Sign Up</Button>
             <Link
               to={paths.LOGIN}
-              state={{
-                from: pathname,
-              }}
             >
               <Button
                 type="button"

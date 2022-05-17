@@ -169,3 +169,10 @@ input[type="range"] {
       map-get($background-colors, "secondary");
   }
 }
+textarea {
+  resize: none;
+  border: 2px solid map-get($text-colors, "medium");
+  &:focus {
+    border: 2px solid map-get($text-colors, "primary");
+  }
+}
