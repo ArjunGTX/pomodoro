@@ -3,3 +3,4 @@ export * from "./PageNotFound";
 export * from "./Login";
 export * from "./SignUp";
 export * from "./TodoList";
+export * from "./TodoInfo";

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Button } from "./Button";
 import { TextInput } from "./TextInput";
 import * as api from "../api";
@@ -22,7 +22,6 @@ export const TodoModal = ({ onClose, todo }) => {
           title: "",
           description: "",
           time: "",
-          break: "",
           isComplete: false,
           labels: [],
         }
@@ -96,16 +95,7 @@ export const TodoModal = ({ onClose, todo }) => {
         onChange={handleInputChange}
         placeholder="Time Limit (in minutes)"
         type="number"
-        min={5}
-        className="mb-md"
-      />
-      <TextInput
-        value={todoInputs.break}
-        id="break"
-        onChange={handleInputChange}
-        placeholder="Break (in minutes)"
-        type="number"
-        min={1}
+        min={2}
         className="mb-md"
       />
       <div className="fr-fe-ct full-width">
