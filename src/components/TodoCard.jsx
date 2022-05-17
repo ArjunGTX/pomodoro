@@ -43,7 +43,6 @@ export const TodoCard = ({ className, todo }) => {
       const { status, data } = await api.deleteTodo(todo._id);
       if (status !== 200) return;
       syncTodosWithServer();
-      console.log(data);
       toast.success(toastSuccess.DELETE_TODO);
     } catch (error) {
       toast.error(toastError.DELETE_TODO);
