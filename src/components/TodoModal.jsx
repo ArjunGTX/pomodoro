@@ -53,6 +53,7 @@ export const TodoModal = ({ onClose, todo }) => {
   };
 
   const handleSubmit = (e) => {
+    e.stopPropagation();
     e.preventDefault();
     todo ? updateTodoRequest() : createTodoRequest();
   };
@@ -99,7 +100,15 @@ export const TodoModal = ({ onClose, todo }) => {
         className="mb-md"
       />
       <div className="fr-fe-ct full-width">
-        <Button type="button" onClick={onClose} variant="plain" color="primary">
+        <Button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          variant="plain"
+          color="primary"
+        >
           Cancel
         </Button>
         <Button className="ml-sm">{todo ? "Update" : "Add"}</Button>

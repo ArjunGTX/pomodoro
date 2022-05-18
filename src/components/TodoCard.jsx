@@ -11,10 +11,11 @@ import * as api from "../api";
 import toast from "react-hot-toast";
 import { paths, toastError, toastSuccess } from "../util/constant";
 import { useTodo } from "../context";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const TodoCard = ({ className, todo }) => {
   const { syncTodosWithServer } = useTodo();
+  const navigate = useNavigate()
 
   const initialRender = useRef(true);
 
@@ -51,8 +52,8 @@ export const TodoCard = ({ className, todo }) => {
   };
 
   return (
-    <Link
-      to={`${paths.TODO}/${todo._id}`}
+    <div
+     onClick={() => navigate(`${paths.TODO}/${todo._id}`)}
       className={clsx(
         "p-xl ul-light full-width fr-sb-ct cursor-pointer",
         isComplete ? "bg-secondary txt-medium" : "bg-secondary-light",
@@ -95,6 +96,6 @@ export const TodoCard = ({ className, todo }) => {
       {showModal && (
         <TodoModal todo={todo} onClose={() => setShowModal(false)} />
       )}
-    </Link>
+    </div>
   );
 };
