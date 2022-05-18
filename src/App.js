@@ -1,6 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { PageWrapper } from "./components";
-import { LandingPage, Login, PageNotFound, SignUp, TodoList } from "./pages";
+import {
+  LandingPage,
+  Login,
+  PageNotFound,
+  SignUp,
+  TodoInfo,
+  TodoList,
+} from "./pages";
 import { paths } from "./util/constant";
 
 function App() {
@@ -14,6 +21,14 @@ function App() {
         element={
           <PageWrapper requiresAuth>
             <TodoList />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={`${paths.TODO}/:todoId`}
+        element={
+          <PageWrapper requiresAuth>
+            <TodoInfo />
           </PageWrapper>
         }
       />

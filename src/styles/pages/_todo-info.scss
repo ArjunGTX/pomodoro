@@ -1,0 +1,20 @@
+.todo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & .timer {
+    max-width: 90%;
+    height: 60vh;
+  }
+}
+
+@media screen and (min-width: map-get($break-points, "md")) {
+  .todo-info {
+    flex-direction: row;
+    & .timer {
+      max-width: 50vw;
+      height: 50vh;
+    }
+  }
+}

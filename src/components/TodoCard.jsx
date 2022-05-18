@@ -9,8 +9,9 @@ import clsx from "clsx";
 import { TodoModal } from "./TodoModal";
 import * as api from "../api";
 import toast from "react-hot-toast";
-import { toastError, toastSuccess } from "../util/constant";
+import { paths, toastError, toastSuccess } from "../util/constant";
 import { useTodo } from "../context";
+import { Link } from "react-router-dom";
 
 export const TodoCard = ({ className, todo }) => {
   const { syncTodosWithServer } = useTodo();
@@ -50,7 +51,8 @@ export const TodoCard = ({ className, todo }) => {
   };
 
   return (
-    <div
+    <Link
+      to={`${paths.TODO}/${todo._id}`}
       className={clsx(
         "p-xl ul-light full-width fr-sb-ct cursor-pointer",
         isComplete ? "bg-secondary txt-medium" : "bg-secondary-light",
@@ -93,6 +95,6 @@ export const TodoCard = ({ className, todo }) => {
       {showModal && (
         <TodoModal todo={todo} onClose={() => setShowModal(false)} />
       )}
-    </div>
+    </Link>
   );
 };
